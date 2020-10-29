@@ -35,13 +35,5 @@
         "secured": false,
         "type": "string"
     }
-],"template_output_params": [
-  {
-      "description": "Public IP",
-      "hidden": false,
-      "label": "Public IP",
-      "name": "vm_ip_out",
-      "secured": false,
-      "type": "string"
-  }]
+]
 }

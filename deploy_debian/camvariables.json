@@ -189,6 +189,14 @@
           "type": "string",
           "group": "virtualmachine"
       }
-    ]
+    ],"template_output_params": [
+        {
+            "description": "Public VM IP",
+            "hidden": false,
+            "label": "Public VM IP",
+            "name": "vm_ip",
+            "secured": false,
+            "type": "string"
+        }]
   }
   
