@@ -3,10 +3,6 @@ variable "vm_ip" {
   description = "VM IPv4"
 }
 
-variable "private_key" {
-  description = "Private key used for ssh"
-}
-
 ########## MAIN ####################
 resource "null_resource" "run_installer" {
 
@@ -14,7 +10,7 @@ resource "null_resource" "run_installer" {
     type = "ssh"
     host = "${var.vm_ip}"
     user        = "root"
-    private_key = "${var.private_key}"
+    private_key = "${path.module}/scripts/id_rsa"
   }
 
   provisioner "file" {
