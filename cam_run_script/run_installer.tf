@@ -1,4 +1,9 @@
+############### Input Var #############
+variable "vm_ip" {
+  description = "VM IPv4"
+}
 
+########## MAIN ####################
 resource "null_resource" "run_installer" {
 
   connection {
