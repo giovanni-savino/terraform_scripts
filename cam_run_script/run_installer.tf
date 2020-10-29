@@ -18,10 +18,6 @@ resource "null_resource" "run_installer" {
     destination = "/tmp/run_installer.sh"
   }
 
-  provisioner "file" {
-    source = "${path.module}/scripts/docker_compose.yml"
-    destination = "/tmp/docker_compose.yml"
-  }
 
   provisioner "remote-exec" {
     inline = [
