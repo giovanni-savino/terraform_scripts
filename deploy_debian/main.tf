@@ -12,6 +12,11 @@ variable "datacenter" {
   description = "Softlayer datacenter where infrastructure resources will be deployed"
 }
 
+variable "memory" {
+  description = "RAM Memory in MB"
+  default= "1024"
+}
+
 variable "hostname" {
   description = "Hostname of the virtual instance (small flavor) to be deployed"
   default     = "debian-small"
@@ -38,7 +43,7 @@ resource "ibm_compute_vm_instance" "debian_small_virtual_guest" {
   hourly_billing           = true
   private_network_only     = false
   cores                    = 1
-  memory                   = 1024
+  memory                   = "${var.memory}"
   disks                    = [25, 10, 20]
   user_metadata            = "{\"value\":\"newvalue\"}"
   dedicated_acct_host_only = false

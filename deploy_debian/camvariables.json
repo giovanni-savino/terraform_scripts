@@ -178,6 +178,18 @@
           "group": "virtualmachine"
       },
       {
+          "default": "1024",
+          "description": "RAM memory in MB",
+          "hidden": false,
+          "immutable": false,
+          "label": "Memory",
+          "name": "memory",
+          "required": true,
+          "secured": false,
+          "type": "string",
+          "group": "virtualmachine"
+      },
+      {
           "default": "sample.com",
           "description": "Domain of the virtual instance to be deployed",
           "hidden": false,
