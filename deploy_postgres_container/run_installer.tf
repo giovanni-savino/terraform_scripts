@@ -3,21 +3,6 @@ variable "vm_ip" {
   description = "VM IPv4"
 }
 
-variable "external_postgres" {
-  description = "Use external postgres"
-  type = bool
-  default = false
-}
-
-variable "external_postgres_url" {
-  description = "External postgres url"
-  default = "postrgres"
-}
-
-variable "external_postgres_port" {
-  description = "External postgres port"
-  default = 5432
-}
 
 ########## MAIN ####################
 resource "null_resource" "run_installer" {

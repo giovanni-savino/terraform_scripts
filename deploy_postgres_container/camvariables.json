@@ -15,7 +15,6 @@
       "label": "Outputs"
     }
   ],
-  "template_input_params": [
     {
         "description": "Public IP",
         "hidden": false,
@@ -25,17 +24,6 @@
         "required": true,
         "secured": false,
         "type": "string"
-    },
-    "external_postgres": [
-      {
-          "description": "External postgres",
-          "hidden": false,
-          "immutable": false,
-          "label": "External postgres database for Jasper report",
-          "name": "external_postgres",
-          "required": true,
-          "secured": false,
-          "type": "boolean"
-      }
+    }
 ]
 }

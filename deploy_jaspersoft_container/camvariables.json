@@ -26,7 +26,6 @@
         "secured": false,
         "type": "string"
     },
-    "external_postgres_url": [
       {
           "description": "External postgres url",
           "hidden": false,
@@ -37,7 +36,6 @@
           "secured": false,
           "type": "string"
       },
-      "external_postgres_port": [
         {
             "description": "External postgres port",
             "hidden": false,
