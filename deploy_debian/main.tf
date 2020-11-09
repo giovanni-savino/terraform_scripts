@@ -14,12 +14,12 @@ variable "datacenter" {
 
 variable "memory" {
   description = "RAM Memory in MB"
-  default= "1024"
+  default= "4096"
 }
 
 variable "hostname" {
-  description = "Hostname of the virtual instance (small flavor) to be deployed"
-  default     = "debian-small"
+  description = "Hostname of the virtual instance (medium flavor) to be deployed"
+  default     = "debian-medium"
 }
 
 # This will create a new SSH key that will show up under the \
@@ -42,7 +42,7 @@ resource "ibm_compute_vm_instance" "debian_small_virtual_guest" {
   network_speed            = 10
   hourly_billing           = true
   private_network_only     = false
-  cores                    = 1
+  cores                    = 4
   memory                   = "${var.memory}"
   disks                    = [25, 10, 20]
   user_metadata            = "{\"value\":\"newvalue\"}"

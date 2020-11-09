@@ -178,7 +178,7 @@
           "group": "virtualmachine"
       },
       {
-          "default": "1024",
+          "default": "4096",
           "description": "RAM memory in MB",
           "hidden": false,
           "immutable": false,
