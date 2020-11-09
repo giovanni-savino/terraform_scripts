@@ -1,0 +1,41 @@
+{
+  "terraform_version": "~> 0.11.0",
+  "input_datatypes": [
+  ],
+  "output_datatype": "content_template_output",
+  "input_groups": [
+    {
+      "name": "Script input variable",
+      "label": "Script input variable"
+    }
+  ],
+  "output_groups": [
+    {
+      "name": "content_template_output",
+      "label": "Outputs"
+    }
+  ],
+  "template_input_params": [
+    {
+        "description": "Public IP",
+        "hidden": false,
+        "immutable": false,
+        "label": "Public IP",
+        "name": "vm_ip",
+        "required": true,
+        "secured": false,
+        "type": "string"
+    },
+    "external_postgres": [
+      {
+          "description": "External postgres",
+          "hidden": false,
+          "immutable": false,
+          "label": "External postgres database for Jasper report",
+          "name": "external_postgres",
+          "required": true,
+          "secured": false,
+          "type": "boolean"
+      }
+]
+}
