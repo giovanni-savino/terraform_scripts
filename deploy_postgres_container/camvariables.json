@@ -15,6 +15,7 @@
       "label": "Outputs"
     }
   ],
+  "template_input_params": [
     {
         "description": "Public IP",
         "hidden": false,
