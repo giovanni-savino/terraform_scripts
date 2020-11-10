@@ -34,7 +34,7 @@ services:
       - jasper_keystore:/usr/local/share/jasperserver/keystore
     environment:
       - JRS_DBCONFIG_REGEN=true
-    command: ["/wait-for-it.sh", "postgres:5432", "-t" , "30", "--", "/entrypoint-cmdline-ce.sh", "init"]
+    command: ["/wait-for-it.sh", "$1:$2", "-t" , "30", "--", "/entrypoint-cmdline-ce.sh", "init"]
     networks:
       - reportsnet
 networks:
@@ -49,13 +49,13 @@ volumes:
   jasper_init_home:
 EOF
 cat << EOF > /tmp/jasper.env
-DB_HOST=postgres
-DB_USER=postgres
-DB_PASSWORD=postgres
-DB_PORT=5432
+DB_HOST=$1
+DB_USER=$3
+DB_PASSWORD=$4
+DB_PORT=$2
 DB_NAME=jasperserver
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
+POSTGRES_USER=$3
+POSTGRES_PASSWORD=$4
 EOF
 
 docker -v

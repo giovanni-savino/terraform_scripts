@@ -6,12 +6,22 @@ variable "vm_ip" {
 
 variable "external_postgres_url" {
   description = "External postgres url"
-  default = "postrgres"
+  default = "postgres"
 }
 
 variable "external_postgres_port" {
   description = "External postgres port"
   default = 5432
+}
+
+variable "external_postgres_user" {
+  description = "External postgres user"
+  default = "postgres"
+}
+
+variable "external_postgres_password" {
+  description = "External postgres password"
+  default = "postgrespassword"
 }
 
 ########## MAIN ####################
@@ -39,7 +49,7 @@ triggers = {
     inline = [
       "set -e",
       "chmod 755 /tmp/run_installer_jasper.sh",
-      "bash -c '/tmp/run_installer_jasper.sh'"
+      "bash -c '/tmp/run_installer_jasper.sh ${var.external_postgres_url} ${var.external_postgres_port} ${var.external_postgres_user} ${var.external_postgres_password}'"
     ]
   }
 }

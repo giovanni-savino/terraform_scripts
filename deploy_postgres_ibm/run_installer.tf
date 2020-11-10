@@ -2,7 +2,7 @@
 
 variable "admin_password" {
   description = "Postgres admin password"
-  default = "postgres"
+  default = "postgrespassword"
 }
 
 data "ibm_resource_group" "group" {
