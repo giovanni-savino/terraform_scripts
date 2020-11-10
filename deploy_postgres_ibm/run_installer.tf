@@ -16,7 +16,7 @@ resource "ibm_database" "jasper_postgres" {
   location          = "us-south"
   service           = "databases-for-postgresql"
   resource_group_id = data.ibm_resource_group.group.id
-  adminpassword     = var.admin_password
+  adminpassword     = "${var.admin_password}"
   whitelist {
     address     = "169.46.232.1/32"
     description = "desc"
