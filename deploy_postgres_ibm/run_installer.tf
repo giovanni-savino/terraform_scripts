@@ -2,7 +2,6 @@
 
 variable "admin_password" {
   description = "Postgres admin password"
-  type = string 
   default = "postgres"
 }
 
@@ -15,7 +14,7 @@ resource "ibm_database" "jasper_postgres" {
   plan              = "standard"
   location          = "us-south"
   service           = "databases-for-postgresql"
-  resource_group_id = data.ibm_resource_group.group.id
+  resource_group_id = "${data.ibm_resource_group.group.id}"
   adminpassword     = "${var.admin_password}"
   whitelist {
     address     = "169.46.232.1/32"
@@ -24,11 +23,11 @@ resource "ibm_database" "jasper_postgres" {
 }
 
 output "postgres_connectionstring" {
-value = ibm_database.jasper_postgres.connectionstrings.0.composed
+value = "${ibm_database.jasper_postgres.connectionstrings.0.composed}"
 }
 
 output "postgres_adminuser" {
-value = ibm_database.jasper_postgres.adminuser
+value = "${ibm_database.jasper_postgres.adminuser}"
 }
 
 
