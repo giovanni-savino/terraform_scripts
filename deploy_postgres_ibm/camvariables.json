@@ -18,7 +18,7 @@
   "template_input_params": [
     {
         "description": "Postgres admin password",
-        "hidden": true,
+        "hidden": false,
         "immutable": false,
         "label": "Postgres admin password",
         "name": "admin_password",
