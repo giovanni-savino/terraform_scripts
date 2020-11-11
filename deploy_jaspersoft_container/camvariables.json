@@ -27,23 +27,43 @@
         "type": "string"
     },
       {
-          "description": "External postgres url",
+          "description": "Postgres url",
           "hidden": false,
           "immutable": false,
-          "label": "External postgres url to connect Jasper report",
-          "name": "external_postgres_url",
+          "label": "Potgres host ",
+          "name": "postgres_url",
           "required": true,
           "secured": false,
           "type": "string"
       },
         {
-            "description": "External postgres port",
+            "description": "Postgres port",
             "hidden": false,
             "immutable": false,
-            "label": "External postgres port to connect Jasper report",
-            "name": "external_postgres_port",
+            "label": "Postgres port to connect Jasper report",
+            "name": "postgres_port",
             "required": true,
             "secured": false,
+            "type": "string"
+        },
+        {
+            "description": "Postgres admin user",
+            "hidden": false,
+            "immutable": false,
+            "label": "Postgres admin user",
+            "name": "postgres_user",
+            "required": true,
+            "secured": false,
+            "type": "string"
+        },
+        {
+            "description": "Postgres admin password",
+            "hidden": false,
+            "immutable": false,
+            "label": "Postgres admin password",
+            "name": "postgres_password",
+            "required": true,
+            "secured": true,
             "type": "string"
         }
 ]

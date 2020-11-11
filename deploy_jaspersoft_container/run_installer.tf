@@ -4,23 +4,23 @@ variable "vm_ip" {
 }
 
 
-variable "external_postgres_url" {
-  description = "External postgres url"
+variable "postgres_url" {
+  description = "Postgres url"
   default = "postgres"
 }
 
-variable "external_postgres_port" {
-  description = "External postgres port"
+variable "postgres_port" {
+  description = "Postgres port"
   default = 5432
 }
 
-variable "external_postgres_user" {
-  description = "External postgres user"
+variable "postgres_user" {
+  description = "Postgres user"
   default = "postgres"
 }
 
-variable "external_postgres_password" {
-  description = "External postgres password"
+variable "postgres_password" {
+  description = "Postgres password"
   default = "postgrespassword"
 }
 
