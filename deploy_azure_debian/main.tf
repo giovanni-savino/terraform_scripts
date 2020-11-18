@@ -184,8 +184,8 @@ resource "azurerm_virtual_machine" "vm" {
 
   storage_image_reference {
     publisher = "Debian"
-    offer     = "debian-9"
-    sku       = "9"
+    offer     = "debian-10"
+    sku       = "10"
     version   = "latest"
   }
 
