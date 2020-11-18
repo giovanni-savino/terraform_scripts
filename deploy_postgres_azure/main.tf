@@ -15,13 +15,13 @@ variable "location" {
 variable "server_name" {
   description = "Specifies the name of the PostgreSQL Server. Changing this forces a new resource to be created."
   type        = string
-  default     = "AzurePostgres"
+  default     = "azurepostgres"
 }
 
 variable "sku_name" {
   description = "Specifies the SKU Name for this PostgreSQL Server. The name of the SKU, follows the tier + family + cores pattern (e.g. B_Gen4_1, GP_Gen5_8)."
   type        = string
-  default     = "GP_Gen5_1"
+  default     = "GP_S_Gen5_4"
 }
 
 variable "storage_mb" {
