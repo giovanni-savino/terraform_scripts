@@ -19,29 +19,30 @@
     ],
     "template_input_params": [
       {
+        "description": "Postgres admin user",
+        "hidden": false,
+        "label": "Postgres admin user",
+        "name": "administrator_login",
+        "secured": false,
+        "type": "string"
+    },
+      {
           "description": "Postgres admin password",
           "hidden": false,
           "immutable": false,
           "label": "Postgres admin password",
-          "name": "administrator-password",
+          "name": "administrator_password",
           "required": true,
           "secured": true,
           "type": "string"
-      },
-      {
-        "description": "Postgres admin user",
-        "hidden": false,
-        "label": "Postgres admin user",
-        "name": "administrator-login",
-        "secured": false,
-        "type": "string"
-    }
+      }
+
   ],"template_output_params": [
     {
-      "description": "Postgres connection string",
+      "description": "Postgres FQDN",
       "hidden": false,
       "label": "Postgres conection string",
-      "name": "postgres_connectionstring",
+      "name": "server_fqdn",
       "secured": false,
       "type": "string"
   }
