@@ -78,3 +78,7 @@ resource "azurerm_postgresql_firewall_rule" "postgresql-fw-rule" {
 output "postgresql_server" {
   value = azurerm_postgresql_server.postgresql-server
 }
+provider "azurerm" {
+  version = "=2.0.0"
+  features {}
+}
