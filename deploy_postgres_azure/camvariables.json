@@ -23,7 +23,7 @@
           "hidden": false,
           "immutable": false,
           "label": "Postgres admin password",
-          "name": "postgresql-admin-password",
+          "name": "administrator-password",
           "required": true,
           "secured": true,
           "type": "string"
@@ -32,7 +32,7 @@
         "description": "Postgres admin user",
         "hidden": false,
         "label": "Postgres admin user",
-        "name": "postgresql-admin-login",
+        "name": "administrator-login",
         "secured": false,
         "type": "string"
     }
