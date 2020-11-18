@@ -21,7 +21,7 @@ variable "server_name" {
 variable "sku_name" {
   description = "Specifies the SKU Name for this PostgreSQL Server. The name of the SKU, follows the tier + family + cores pattern (e.g. B_Gen4_1, GP_Gen5_8)."
   type        = string
-  default     = "GP_S_Gen5_4"
+  default     = "B_Gen5_1"
 }
 
 variable "storage_mb" {
