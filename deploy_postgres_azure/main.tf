@@ -13,7 +13,7 @@ variable "postgresql-admin-password" {
 variable "postgresql-version" {
   type        = string
   description = "PostgreSQL Server version to deploy"
-  default     = "11"
+  default     = "9"
 }
 variable "postgresql-sku-name" {
   type        = string
