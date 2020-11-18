@@ -50,10 +50,9 @@ triggers = {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo su - ",
       "set -e",
       "chmod 755 /tmp/run_installer_jasper.sh",
-      "bash -c '/tmp/run_installer_jasper.sh ${var.postgres_url} ${var.postgres_port} ${var.postgres_user} ${var.postgres_password}'"
+      "sudo bash -c '/tmp/run_installer_jasper.sh ${var.postgres_url} ${var.postgres_port} ${var.postgres_user} ${var.postgres_password}'"
     ]
   }
 }

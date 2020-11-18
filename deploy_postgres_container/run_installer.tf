@@ -30,10 +30,9 @@ triggers = {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo su - ",
       "set -e",
       "chmod 755 /tmp/run_installer_postgres.sh",
-      "bash -c '/tmp/run_installer_postgres.sh'"
+      "sudo bash -c '/tmp/run_installer_postgres.sh'"
     ]
   }
 }
