@@ -15,7 +15,7 @@ variable "location" {
 variable "server_name" {
   description = "Specifies the name of the PostgreSQL Server. Changing this forces a new resource to be created."
   type        = string
-  default     = "azurepostgres"
+  default     = "azurepostgres-123"
 }
 
 variable "sku_name" {

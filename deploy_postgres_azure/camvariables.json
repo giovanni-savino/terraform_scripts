@@ -19,10 +19,19 @@
     ],
     "template_input_params": [
       {
+        "description": "Postgres server name (min 8 char and must be available)",
+        "hidden": false,
+        "label": "Postgres server name",
+        "name": "server_name",
+        "secured": false,
+        "type": "string"
+    },
+      {
         "description": "Postgres admin user",
         "hidden": false,
         "label": "Postgres admin user",
         "name": "administrator_login",
+        "required": true,
         "secured": false,
         "type": "string"
     },
