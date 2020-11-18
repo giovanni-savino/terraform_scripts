@@ -3,6 +3,9 @@ variable "vm_ip" {
   description = "VM IPv4"
 }
 
+variable "vm_user" {
+  description = "VM User"
+}
 
 variable "postgres_url" {
   description = "Postgres url"
@@ -34,7 +37,7 @@ triggers = {
   connection {
     type = "ssh"
     host = "${var.vm_ip}"
-    user        = "root"
+    user        = "${var.vm_user}"
     port        = 22
     private_key = "${file("${path.module}/scripts/id_rsa")}"
   }
@@ -49,7 +52,7 @@ triggers = {
     inline = [
       "set -e",
       "chmod 755 /tmp/run_installer_jasper.sh",
-      "bash -c '/tmp/run_installer_jasper.sh ${var.external_postgres_url} ${var.external_postgres_port} ${var.external_postgres_user} ${var.external_postgres_password}'"
+      "bash -c '/tmp/run_installer_jasper.sh ${var.postgres_url} ${var.postgres_port} ${var.postgres_user} ${var.postgres_password}'"
     ]
   }
 }

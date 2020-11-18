@@ -3,6 +3,9 @@ variable "vm_ip" {
   description = "VM IPv4"
 }
 
+variable "vm_user" {
+  description = "VM User"
+}
 
 ########## MAIN ####################
 resource "null_resource" "run_installer" {
@@ -14,7 +17,7 @@ triggers = {
   connection {
     type = "ssh"
     host = "${var.vm_ip}"
-    user        = "root"
+    user        = "${var.vm_user}"
     port        = 22
     private_key = "${file("${path.module}/scripts/id_rsa")}"
   }

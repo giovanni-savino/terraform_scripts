@@ -25,6 +25,16 @@
         "required": true,
         "secured": false,
         "type": "string"
-    }
+    },  
+    {
+      "description": "VM users",
+      "hidden": false,
+      "immutable": false,
+      "label": "VM user",
+      "name": "vm_user",
+      "required": true,
+      "secured": false,
+      "type": "string"
+     }
 ]
 }
