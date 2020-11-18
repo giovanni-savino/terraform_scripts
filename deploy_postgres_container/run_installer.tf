@@ -32,7 +32,7 @@ triggers = {
     inline = [
       "set -e",
       "chmod 755 /tmp/run_installer_postgres.sh",
-      "if [[ $EUID -ne 0 ]]; then bash -c '/tmp/run_installer_postgres.sh' ; else sudo bash -c '/tmp/run_installer_postgres.sh';  fi "
+      "if [[ $EUID -ne 0 ]]; then sudo bash -c '/tmp/run_installer_postgres.sh' ; else bash -c '/tmp/run_installer_postgres.sh';  fi "
     ]
   }
 }
