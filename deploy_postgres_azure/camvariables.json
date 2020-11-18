@@ -27,16 +27,16 @@
           "required": true,
           "secured": true,
           "type": "string"
-      }
-  ],"template_output_params": [
-    {
+      },
+      {
         "description": "Postgres admin user",
         "hidden": false,
         "label": "Postgres admin user",
         "name": "postgresql-admin-login",
         "secured": false,
         "type": "string"
-    },
+    }
+  ],"template_output_params": [
     {
       "description": "Postgres connection string",
       "hidden": false,
