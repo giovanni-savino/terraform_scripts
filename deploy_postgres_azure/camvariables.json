@@ -1,0 +1,49 @@
+{
+    "terraform_version": "~> 0.12.0",
+    "input_datatypes": [],
+    "input_groups": [
+        {
+            "name": "Globals",
+            "label": "Azure Globals"
+        },
+        {
+            "name": "Instances-azurerm_postgres db",
+            "label": "Instance - Postgresdb"
+        }
+    ],
+    "output_groups": [
+      {
+        "name": "content_template_output",
+        "label": "Outputs"
+      }
+    ],
+    "template_input_params": [
+      {
+          "description": "Postgres admin password",
+          "hidden": false,
+          "immutable": false,
+          "label": "Postgres admin password",
+          "name": "postgresql-admin-password",
+          "required": true,
+          "secured": true,
+          "type": "string"
+      }
+  ],"template_output_params": [
+    {
+        "description": "Postgres admin user",
+        "hidden": false,
+        "label": "Postgres admin user",
+        "name": "postgresql-admin-login",
+        "secured": false,
+        "type": "string"
+    },
+    {
+      "description": "Postgres connection string",
+      "hidden": false,
+      "label": "Postgres conection string",
+      "name": "postgres_connectionstring",
+      "secured": false,
+      "type": "string"
+  }
+  ]
+}
