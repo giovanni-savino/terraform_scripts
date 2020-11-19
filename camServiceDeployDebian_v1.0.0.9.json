@@ -3,8 +3,8 @@
     "version": "1.0.0.9",
     "specVersion": "v3",
     "catalog_metadata": {
-      "name": "JasperVM",
-      "description": "",
+      "name": "Deploy JasperSoft",
+      "description": "Deploy JasperSoft on container",
       "image": "serviceicon_1.svg",
       "category": "Application Services",
       "bullets": [],
@@ -98,24 +98,6 @@
             "dynamicDetails": {}
           },
           {
-            "name": "memory",
-            "label": "Memory",
-            "customtype": "string",
-            "type": "string",
-            "immutable": true,
-            "hidden": false,
-            "required": true,
-            "secured": false,
-            "description": "Ram Memory [MB]",
-            "isDynamic": false,
-            "editable": true,
-            "default": "8192",
-            "passbyname": false,
-            "dynamicDetails": {},
-            "regex": "",
-            "regexdesc": ""
-          },
-          {
             "name": "external_postgres",
             "label": "External postgres",
             "customtype": "string",
@@ -129,12 +111,43 @@
             "editable": true,
             "options": [
               {
-                "value": "false",
-                "label": "false"
+                "value": "ibm-false",
+                "label": "ibm-false"
               },
               {
-                "value": "true",
-                "label": "true"
+                "value": "ibm-true",
+                "label": "ibm-true"
+              },
+              {
+                "value": "azure-false",
+                "label": "azure-false"
+              },
+              {
+                "value": "azure-true",
+                "label": "azure-true"
+              }
+            ]
+          },
+          {
+            "name": "ibm_or_azure",
+            "label": "Cloud Provider",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "select the cloud provider",
+            "view": "create new",
+            "editable": false,
+            "options": [
+              {
+                "value": "ibm",
+                "label": "ibm"
+              },
+              {
+                "value": "azure",
+                "label": "azure"
               }
             ]
           }
@@ -143,20 +156,57 @@
           "conditions": [
             {
               "decision": {
-                "title": "decision_d74a3e",
+                "title": "Cloud Provider",
                 "options": [
                   {
-                    "case": "false",
+                    "case": "ibm",
                     "sequence": {
-                      "0": "deploypo335c68e5",
-                      "1": "deployja7d0c99d3"
+                      "0": "deployded009a8df"
                     }
                   },
                   {
-                    "case": "true",
+                    "case": "azure",
                     "sequence": {
-                      "0": "deploypoeefa74c6",
-                      "1": "deployja3b09db24"
+                      "0": "deployded414618b"
+                    }
+                  }
+                ],
+                "id": "decisionc8e27a2d",
+                "editable": true,
+                "isErrorFlow": false,
+                "mapped_parameter": "${input_parameters.ibm_or_azure}"
+              }
+            },
+            {
+              "decision": {
+                "title": "External postgres",
+                "options": [
+                  {
+                    "case": "ibm-false",
+                    "sequence": {
+                      "0": "deployap714968e5",
+                      "1": "deployjaeab8e45d"
+                    }
+                  },
+                  {
+                    "case": "ibm-true",
+                    "sequence": {
+                      "0": "deploypo93785507",
+                      "1": "deployja2a46e534"
+                    }
+                  },
+                  {
+                    "case": "azure-false",
+                    "sequence": {
+                      "0": "deployap7848ea77",
+                      "1": "deployjaabb9198b"
+                    }
+                  },
+                  {
+                    "case": "azure-true",
+                    "sequence": {
+                      "0": "deploypof8262b2b",
+                      "1": "deployja3399d87e"
                     }
                   }
                 ],
@@ -169,21 +219,21 @@
           ],
           "templates": [
             {
-              "Deploy a Debian 9": {
-                "title": "Deploy a Debian 9",
-                "template_name": "Deploy a Debian 9",
+              "Deploy Debian 9 on IBM Cloud": {
+                "title": "Deploy Debian 9 on IBM Cloud",
+                "template_name": "Deploy Debian 9 on IBM Cloud",
                 "version": "master",
-                "id": "deployadd619e056",
+                "id": "deployded009a8df",
                 "template_type": "Terraform",
-                "template_content_type": "IBM,Other",
-                "template_provider": "IBM,Other",
+                "template_content_type": "IBM",
+                "template_provider": "IBM",
                 "instance_name": "",
                 "template_data_objects": {},
                 "template_params": {
                   "public_ssh_key": "${input_parameters.public_key}",
                   "datacenter": "dal09",
                   "hostname": "debian-small",
-                  "memory": "${input_parameters.memory}",
+                  "memory": "4096",
                   "domain": "sample.com"
                 },
                 "outputs": [
@@ -193,30 +243,62 @@
                 "cloud_connection_names": [
                   {
                     "provider": "IBM",
-                    "connection_name": "IBM_GSavino"
-                  },
-                  {
-                    "provider": "Other",
-                    "connection_name": "Other"
+                    "connection_name": "Gsavino-IBM"
                   }
                 ],
                 "provider_engine_version": "0.11.11",
-                "isErrorFlow": false
+                "isErrorFlow": false,
+                "mapped_parameter": "${input_parameters.ibm_or_azure}",
+                "cloud_connection_name": "Gsavino-IBM"
               }
             },
             {
-              "Deploy Postgres DB 9.5.2": {
-                "title": "Deploy Postgres DB 9.5.2_041243",
-                "template_name": "Deploy Postgres DB 9.5.2",
+              "Deploy Debian 9 on Azure": {
+                "title": "Deploy Debian 10 on Azure",
+                "template_name": "Deploy Debian 9 on Azure",
                 "version": "master",
-                "id": "deploypo335c68e5",
+                "id": "deployded414618b",
+                "template_type": "Terraform",
+                "template_content_type": "Microsoft Azure",
+                "template_provider": "Microsoft Azure",
+                "instance_name": "",
+                "template_data_objects": {},
+                "template_params": {
+                  "azure_region": "West US",
+                  "name_prefix": "virtualmachine",
+                  "admin_user": "ibmadmin",
+                  "admin_user_password": "^(U2VjcmV0UEBzc3dkOTkh)",
+                  "user_public_key": "${input_parameters.public_key}"
+                },
+                "outputs": [
+                  "azure_vm_public_ip",
+                  "azure_vm_private_ip"
+                ],
+                "editable": true,
+                "cloud_connection_names": [
+                  {
+                    "provider": "Microsoft Azure",
+                    "connection_name": "Azure_TS"
+                  }
+                ],
+                "provider_engine_version": "0.12.21",
+                "cloud_connection_name": "Azure_TS"
+              }
+            },
+            {
+              "Deploy a postgres DB on container": {
+                "title": "Deploy a postgres DB on container_92dda0",
+                "template_name": "Deploy a postgres DB on container",
+                "version": "master",
+                "id": "deployap714968e5",
                 "template_type": "Terraform",
                 "template_content_type": "Other",
                 "template_provider": "Other",
                 "instance_name": "",
                 "template_data_objects": {},
                 "template_params": {
-                  "vm_ip": "${templates.deployadd619e056.output.vm_ip}"
+                  "vm_ip": "${templates.deployded009a8df.output.vm_ip}",
+                  "vm_user": "root"
                 },
                 "outputs": [],
                 "editable": true,
@@ -227,27 +309,27 @@
                   }
                 ],
                 "provider_engine_version": "0.12.21",
-                "isErrorFlow": false,
                 "cloud_connection_name": "Other"
               }
             },
             {
-              "Deploy JasperReport on docker": {
-                "title": "Deploy JasperReport on docker_2816dd",
-                "template_name": "Deploy JasperReport on docker",
+              "Deploy JasperServer on container": {
+                "title": "Deploy JasperServer on container_872e26",
+                "template_name": "Deploy JasperServer on container",
                 "version": "master",
-                "id": "deployja7d0c99d3",
+                "id": "deployjaeab8e45d",
                 "template_type": "Terraform",
                 "template_content_type": "Other",
                 "template_provider": "Other",
                 "instance_name": "",
                 "template_data_objects": {},
                 "template_params": {
-                  "vm_ip": "${templates.deployadd619e056.output.vm_ip}",
+                  "vm_ip": "${templates.deployded009a8df.output.vm_ip}",
                   "postgres_url": "postgres",
                   "postgres_port": "5432",
                   "postgres_user": "postgres",
-                  "postgres_password": "^(cG9zdGdyZXM=)"
+                  "postgres_password": "^(cG9zcmdyZXNwYXNzd29yZA==)",
+                  "vm_user": "root"
                 },
                 "outputs": [],
                 "editable": true,
@@ -262,11 +344,11 @@
               }
             },
             {
-              "Deploy postgress as-a-service on IBM Cloud": {
-                "title": "Deploy postgress on IBM Cloud",
-                "template_name": "Deploy postgress as-a-service on IBM Cloud",
+              "Deploy postgres DB as a Service on IBM Cloud": {
+                "title": "Deploy postgres DB as a Service on IBM Cloud",
+                "template_name": "Deploy postgres DB as a Service on IBM Cloud",
                 "version": "master",
-                "id": "deploypoeefa74c6",
+                "id": "deploypo93785507",
                 "template_type": "Terraform",
                 "template_content_type": "IBM",
                 "template_provider": "IBM",
@@ -283,30 +365,150 @@
                 "cloud_connection_names": [
                   {
                     "provider": "IBM",
-                    "connection_name": "IBM_GSavino"
+                    "connection_name": "Gsavino-IBM"
                   }
                 ],
-                "cloud_connection_name": "IBM_GSavino",
-                "provider_engine_version": "0.11.11"
+                "provider_engine_version": "0.11.11",
+                "cloud_connection_name": "Gsavino-IBM"
               }
             },
             {
-              "Deploy JasperReport on docker": {
-                "title": "Deploy JasperReport on docker_1d4729",
-                "template_name": "Deploy JasperReport on docker",
+              "Deploy JasperServer on container": {
+                "title": "Deploy JasperServer on container_bc72fc",
+                "template_name": "Deploy JasperServer on container",
                 "version": "master",
-                "id": "deployja3b09db24",
+                "id": "deployja2a46e534",
                 "template_type": "Terraform",
                 "template_content_type": "Other",
                 "template_provider": "Other",
                 "instance_name": "",
                 "template_data_objects": {},
                 "template_params": {
-                  "vm_ip": "${templates.deployadd619e056.output.vm_ip}",
+                  "vm_ip": "${templates.deployded009a8df.output.vm_ip}",
                   "postgres_url": "",
                   "postgres_port": "",
-                  "postgres_user": "${templates.deploypoeefa74c6.output.postgres_adminuser}",
-                  "postgres_password": "${templates.deploypoeefa74c6.admin_password}"
+                  "postgres_user": "${templates.deploypo93785507.output.postgres_adminuser}",
+                  "postgres_password": "${templates.deploypo93785507.admin_password}",
+                  "vm_user": "root"
+                },
+                "outputs": [],
+                "editable": true,
+                "cloud_connection_names": [
+                  {
+                    "provider": "Other",
+                    "connection_name": "Other"
+                  }
+                ],
+                "provider_engine_version": "0.12.21",
+                "cloud_connection_name": "Other"
+              }
+            },
+            {
+              "Deploy a postgres DB on container": {
+                "title": "Deploy a postgres DB on Azure",
+                "template_name": "Deploy a postgres DB on container",
+                "version": "master",
+                "id": "deployap7848ea77",
+                "template_type": "Terraform",
+                "template_content_type": "Other",
+                "template_provider": "Other",
+                "instance_name": "",
+                "template_data_objects": {},
+                "template_params": {
+                  "vm_ip": "${\"\"||templates.deployded414618b.output.azure_vm_public_ip}",
+                  "vm_user": "${\"\"||templates.deployded414618b.admin_user}"
+                },
+                "outputs": [],
+                "editable": true,
+                "cloud_connection_names": [
+                  {
+                    "provider": "Other",
+                    "connection_name": "Other"
+                  }
+                ],
+                "provider_engine_version": "0.12.21",
+                "cloud_connection_name": "Other"
+              }
+            },
+            {
+              "Deploy JasperServer on container": {
+                "title": "Deploy JasperServer on container on Azure",
+                "template_name": "Deploy JasperServer on container",
+                "version": "master",
+                "id": "deployjaabb9198b",
+                "template_type": "Terraform",
+                "template_content_type": "Other",
+                "template_provider": "Other",
+                "instance_name": "",
+                "template_data_objects": {},
+                "template_params": {
+                  "vm_ip": "${\"\"||templates.deployded414618b.output.azure_vm_public_ip}",
+                  "postgres_url": "postgres",
+                  "postgres_port": "5432",
+                  "postgres_user": "postgres",
+                  "postgres_password": "^(cG9zdGdyZXNwYXNzd29yZA==)",
+                  "vm_user": "${\"\"||templates.deployded414618b.admin_user}"
+                },
+                "outputs": [],
+                "editable": true,
+                "cloud_connection_names": [
+                  {
+                    "provider": "Other",
+                    "connection_name": "Other"
+                  }
+                ],
+                "provider_engine_version": "0.12.21",
+                "cloud_connection_name": "Other"
+              }
+            },
+            {
+              "Deploy Postgres DB on Microsoft Azure": {
+                "title": "Deploy Postgres DB on Azure",
+                "template_name": "Deploy Postgres DB on Microsoft Azure",
+                "version": "master",
+                "id": "deploypof8262b2b",
+                "template_type": "Terraform",
+                "template_content_type": "Microsoft Azure",
+                "template_provider": "Microsoft Azure",
+                "instance_name": "",
+                "template_data_objects": {},
+                "template_params": {
+                  "server_name": "",
+                  "administrator_login": "postgres",
+                  "administrator_password": "^(UG9zdGdyZXMxMjM=)"
+                },
+                "outputs": [
+                  "server_fqdn"
+                ],
+                "editable": true,
+                "cloud_connection_names": [
+                  {
+                    "provider": "Microsoft Azure",
+                    "connection_name": "Azure_TS"
+                  }
+                ],
+                "provider_engine_version": "0.12.21",
+                "cloud_connection_name": "Azure_TS"
+              }
+            },
+            {
+              "Deploy JasperServer on container": {
+                "title": "Deploy JasperServer on container on Azure",
+                "template_name": "Deploy JasperServer on container",
+                "version": "master",
+                "id": "deployja3399d87e",
+                "template_type": "Terraform",
+                "template_content_type": "Other",
+                "template_provider": "Other",
+                "instance_name": "",
+                "template_data_objects": {},
+                "template_params": {
+                  "vm_ip": "${\"\"||templates.deployded414618b.output.azure_vm_public_ip}",
+                  "vm_user": "${\"\"||templates.deployded414618b.admin_user}",
+                  "postgres_url": "${templates.deploypof8262b2b.output.server_fqdn}",
+                  "postgres_port": "5432",
+                  "postgres_user": "${templates.deploypof8262b2b.administrator_login}",
+                  "postgres_password": "${templates.deploypof8262b2b.administrator_password}"
                 },
                 "outputs": [],
                 "editable": true,
@@ -324,7 +526,7 @@
           "resthooks": [],
           "notifications": [],
           "sequence": {
-            "0": "deployadd619e056",
+            "0": "decisionc8e27a2d",
             "1": "decision17581af8"
           },
           "error_sequence": {}
@@ -334,7 +536,7 @@
     ],
     "plans": [
       {
-        "name": "Min version",
+        "name": "Min version on IBM Cloud",
         "description": "Jaspersoft on Debian 9 with internal postgres [100€/month]",
         "actions": [],
         "plan_parameters": [
@@ -348,38 +550,111 @@
             "required": true,
             "secured": false,
             "description": "External postgres service",
-            "editable": true,
             "options": [
               {
                 "label": "false",
-                "value": "false",
+                "value": "ibm-false",
                 "default": true
               }
             ]
           },
           {
-            "name": "memory",
-            "label": "Memory",
+            "name": "public_key",
+            "label": "Public key",
             "customtype": "string",
             "type": "string",
-            "immutable": true,
+            "immutable": false,
             "hidden": false,
             "required": true,
             "secured": false,
-            "description": "Ram Memory [MB]",
             "isDynamic": false,
             "editable": true,
-            "default": "8192",
+            "default": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQDNL0n7x9vybN+qOOnPaX0boK7tdntcwukhQ/6luBjTjyjpF55+c34gc1a72z8ezpwUXNji4P+UILFQPIHutrWT9RYMsrJRbfdgVpA+Hlzs8H+Mx+EYwJzh28tpREITaph3K2QYRj8A7Y2aVLg/X4DGF8opFOP0ZnOZ/nL4qkFzrw== root@debian-small",
             "passbyname": false,
-            "dynamicDetails": {},
-            "regex": "",
-            "regexdesc": ""
+            "dynamicDetails": {}
+          },
+          {
+            "name": "ibm_or_azure",
+            "label": "Cloud Provider",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "select the cloud provider",
+            "view": "create new",
+            "options": [
+              {
+                "label": "ibm",
+                "value": "ibm",
+                "default": true
+              }
+            ]
           }
         ]
       },
       {
-        "name": "Standard version",
+        "name": "Standard version on IBM Cloud",
         "description": "Jaspersoft on Debian 9 with extenal postgres [150€/month]",
+        "plan_parameters": [
+          {
+            "name": "external_postgres",
+            "label": "External postgres",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "External postgres service",
+            "options": [
+              {
+                "label": "true",
+                "value": "ibm-true",
+                "default": true
+              }
+            ]
+          },
+          {
+            "name": "public_key",
+            "label": "Public key",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "isDynamic": false,
+            "editable": true,
+            "default": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQDNL0n7x9vybN+qOOnPaX0boK7tdntcwukhQ/6luBjTjyjpF55+c34gc1a72z8ezpwUXNji4P+UILFQPIHutrWT9RYMsrJRbfdgVpA+Hlzs8H+Mx+EYwJzh28tpREITaph3K2QYRj8A7Y2aVLg/X4DGF8opFOP0ZnOZ/nL4qkFzrw== root@debian-small",
+            "passbyname": false,
+            "dynamicDetails": {}
+          },
+          {
+            "name": "ibm_or_azure",
+            "label": "Cloud Provider",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "select the cloud provider",
+            "view": "create new",
+            "options": [
+              {
+                "label": "ibm",
+                "value": "ibm",
+                "default": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Externded version on Azure",
+        "description": "Jaspersoft on Debian 10 on Azure [200€/month]",
         "plan_parameters": [
           {
             "name": "external_postgres",
@@ -394,29 +669,69 @@
             "editable": true,
             "options": [
               {
-                "label": "true",
-                "value": "true",
+                "label": "azure-false",
+                "value": "azure-false",
                 "default": true
               }
             ]
           },
           {
-            "name": "memory",
-            "label": "Memory",
+            "name": "ibm_or_azure",
+            "label": "Cloud Provider",
             "customtype": "string",
             "type": "string",
-            "immutable": true,
+            "immutable": false,
             "hidden": false,
             "required": true,
             "secured": false,
-            "description": "Ram Memory [MB]",
+            "description": "select the cloud provider",
+            "editable": true,
+            "options": [
+              {
+                "label": "azure",
+                "value": "azure",
+                "default": true
+              }
+            ]
+          },
+          {
+            "name": "public_key",
+            "label": "Public key",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
             "isDynamic": false,
             "editable": true,
-            "default": "8192",
+            "default": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQDNL0n7x9vybN+qOOnPaX0boK7tdntcwukhQ/6luBjTjyjpF55+c34gc1a72z8ezpwUXNji4P+UILFQPIHutrWT9RYMsrJRbfdgVpA+Hlzs8H+Mx+EYwJzh28tpREITaph3K2QYRj8A7Y2aVLg/X4DGF8opFOP0ZnOZ/nL4qkFzrw== root@debian-small",
             "passbyname": false,
-            "dynamicDetails": {},
-            "regex": "",
-            "regexdesc": ""
+            "dynamicDetails": {}
+          }
+        ]
+      },
+      {
+        "name": "Test versison on Azure",
+        "description": "JasperServer Test version with Postgres as a service  on Azure [300€/month]",
+        "plan_parameters": [
+          {
+            "name": "external_postgres",
+            "label": "External postgres",
+            "customtype": "string",
+            "type": "string",
+            "immutable": false,
+            "hidden": false,
+            "required": true,
+            "secured": false,
+            "description": "External postgres service",
+            "options": [
+              {
+                "label": "azure-true",
+                "value": "azure-true",
+                "default": false
+              }
+            ]
           }
         ]
       }

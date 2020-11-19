@@ -19,6 +19,7 @@ services:
       - jasper_license:/usr/local/share/jasperserver/license 
       - jasper_keystore:/usr/local/share/jasperserver/keystore
       - jasper_customization:/usr/local/share/jasperserver/customization
+      - /tmp/jdbc:/usr/src/jasperreports-server/buildomatic/conf_source/db/postgresql/jdbc
     networks:
       - reportsnet
     command: ["/entrypoint-ce.sh", "run"]
@@ -32,6 +33,7 @@ services:
     volumes:
       - jasper_init_home:/usr/local/share/jasperserver
       - jasper_keystore:/usr/local/share/jasperserver/keystore
+      - /tmp/jdbc:/usr/src/jasperreports-server/buildomatic/conf_source/db/postgresql/jdbc
     environment:
       - JRS_DBCONFIG_REGEN=true
     command: ["/wait-for-it.sh", "$1:$2", "-t" , "30", "--", "/entrypoint-cmdline-ce.sh", "init"]
@@ -56,6 +58,7 @@ DB_PORT=$2
 DB_NAME=jasperserver
 POSTGRES_USER=$3
 POSTGRES_PASSWORD=$4
+POSTGRES_JDBC_DRIVER_VERSION=42.2.18
 EOF
 
 docker -v
@@ -87,4 +90,8 @@ chmod +x /usr/local/bin/docker-compose
 fi
 # Running docker-composer with JasperSoft
 cd /tmp
+mkdir -p jdbc
+cd jdbc
+wget https://jdbc.postgresql.org/download/postgresql-42.2.18.jar
+cd ..
 docker-compose -f docker-compose-jasper.yml up -d
