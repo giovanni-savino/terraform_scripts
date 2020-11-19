@@ -25,7 +25,15 @@
         "required": true,
         "secured": true,
         "type": "string"
-    }
+    },
+    {
+      "description": "IP whitelist",
+      "hidden": false,
+      "immutable": false,
+      "label": "IP whitelist",
+      "name": "ip_whitelist",
+      "type": "string"
+  }
 ],"template_output_params": [
   {
       "description": "Postgres admin user",

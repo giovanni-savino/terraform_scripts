@@ -5,6 +5,11 @@ variable "admin_password" {
   default = "Jasper123"
 }
 
+variable "ip_whitelist" {
+  description = "IP VM front-end"
+  default = "169.46.232.1"
+}
+
 data "ibm_resource_group" "group" {
   name = "default"
 }
@@ -17,8 +22,8 @@ resource "ibm_database" "jasper_postgres" {
   resource_group_id = data.ibm_resource_group.group.id
   adminpassword     = var.admin_password
   whitelist {
-    address     = "169.46.232.1/32"
-    description = "desc"
+    address     = join("",[var.ip_whitelist,"/32"])
+    description = "Ip front-end"
   }
 }
 
