@@ -52,7 +52,7 @@ triggers = {
     inline = [
       "set -e",
       "chmod 755 /tmp/run_installer_jasper.sh",
-      "if [ `id -u` = 0 ] ; then bash -c '/tmp/run_installer_postgres.sh ${var.postgres_url} ${var.postgres_port} ${var.postgres_user} ${var.postgres_password}' ; else sudo bash -c '/tmp/run_installer_postgres.sh ${var.postgres_url} ${var.postgres_port} ${var.postgres_user} ${var.postgres_password}';  fi "
+      "if [ `id -u` = 0 ] ; then bash -c '/tmp/run_installer_jasper.sh ${var.postgres_url} ${var.postgres_port} ${var.postgres_user} ${var.postgres_password}' ; else sudo bash -c '/tmp/run_installer_jasper.sh ${var.postgres_url} ${var.postgres_port} ${var.postgres_user} ${var.postgres_password}';  fi "
     ]
   }
 }

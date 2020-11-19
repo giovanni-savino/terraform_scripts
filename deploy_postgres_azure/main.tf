@@ -21,7 +21,7 @@ variable "server_name" {
 variable "sku_name" {
   description = "Specifies the SKU Name for this PostgreSQL Server. The name of the SKU, follows the tier + family + cores pattern (e.g. B_Gen4_1, GP_Gen5_8)."
   type        = string
-  default     = "B_Gen5_1"
+  default     = "GP_Gen5_4"
 }
 
 variable "storage_mb" {
@@ -193,7 +193,7 @@ output "server_fqdn" {
 }
 
 output "administrator_login" {
-  value = var.administrator_login
+  value = join("",[var.administrator_login,"@",azurerm_postgresql_server.server.name])
 }
 
 output "administrator_password" {
