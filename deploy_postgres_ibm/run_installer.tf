@@ -31,3 +31,12 @@ value = ibm_database.jasper_postgres.adminuser
 }
 
 
+output "postgres_host" {
+  description = "Url"
+  value       = ibm_database.jasper_postgres.connectionstrings.0.hosts.0.hostname
+}
+
+output "postgres_port" {
+  description = "Port"
+  value       = ibm_database.jasper_postgres.connectionstrings.0.hosts.0.port
+}

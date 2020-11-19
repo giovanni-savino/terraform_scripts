@@ -42,6 +42,22 @@
     "name": "postgres_connectionstring",
     "secured": false,
     "type": "string"
+},
+{
+  "description": "Postgres host",
+  "hidden": false,
+  "label": "Postgres host",
+  "name": "postgres_host",
+  "secured": false,
+  "type": "string"
+},
+{
+  "description": "Postgres port",
+  "hidden": false,
+  "label": "Postgres port",
+  "name": "postgres_port",
+  "secured": false,
+  "type": "string"
 }
 ]
 }
