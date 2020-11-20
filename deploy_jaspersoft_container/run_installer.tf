@@ -58,3 +58,7 @@ triggers = {
 }
 
 
+output "jasper_url" {
+  description = "Jasper login url"
+  value       = join("",["http://","${var.vm_ip}",":8080/jasperserver/login.html"])
+}

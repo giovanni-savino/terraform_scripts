@@ -27,7 +27,7 @@ variable "sku_name" {
 variable "storage_mb" {
   description = "Max storage allowed for a server. Possible values are between 5120 MB(5GB) and 1048576 MB(1TB) for the Basic SKU and between 5120 MB(5GB) and 4194304 MB(4TB) for General Purpose/Memory Optimized SKUs."
   type        = number
-  default     = 5120
+  default     = 512000
 }
 
 variable "backup_retention_days" {
@@ -91,7 +91,7 @@ variable "firewall_rule_prefix" {
 variable "firewall_rules" {
   description = "The list of maps, describing firewall rules. Valid map items: name, start_ip, end_ip."
   type        = list(map(string))
-  default     = []
+  default     = [    { name = "All_ips", start_ip = "0.0.0.0", end_ip = "255.255.255.255" }]
 }
 
 variable "vnet_rule_name_prefix" {

@@ -76,5 +76,14 @@
             "secured": true,
             "type": "string"
         }
+],"template_output_params": [
+  {
+      "description": "Japser login url",
+      "hidden": false,
+      "label": "Japser login url",
+      "name": "jasper_url",
+      "secured": false,
+      "type": "string"
+  }
 ]
 }
